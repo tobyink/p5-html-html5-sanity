@@ -1,0 +1,6 @@
+Revision history for Perl extension HTML::HTML5::Sanity.
+
+0.01  Mon Nov 30 12:59:47 2009
+	- original version; created by h2xs 1.23 with options
+		-X HTML::HTML5::Sanity
+

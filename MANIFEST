@@ -1,0 +1,6 @@
+Changes
+Makefile.PL
+MANIFEST
+README
+t/HTML-HTML5-Sanity.t
+lib/HTML/HTML5/Sanity.pm
