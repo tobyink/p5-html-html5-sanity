@@ -9,7 +9,8 @@ SIGNATURE
 lib/HTML/HTML5/Sanity.pm
 
 t/00sig.t
-t/HTML-HTML5-Sanity.t
+t/01basics.t
+t/02languages.t
 
 inc/Module/AutoInstall.pm
 inc/Module/Install/AutoInstall.pm

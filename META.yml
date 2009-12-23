@@ -19,10 +19,11 @@ no_index:
     - inc
     - t
 requires:
+  Locale::Country: 1.06
   XML::LibXML: 0
   perl: 5.8.1
 resources:
   bugtracker: http://search.cpan.org/dist/HTML-HTML5-Sanity/
   homepage: http://search.cpan.org/dist/HTML-HTML5-Sanity/
   license: http://dev.perl.org/licenses/
-version: 0.01
+version: 0.02

@@ -7,3 +7,4 @@ Revision history for Perl extension HTML::HTML5::Sanity.
 0.02
 	- Update build system; sign distribution.
 	- Handling for invalid language attributes.
+	- Improve tests.

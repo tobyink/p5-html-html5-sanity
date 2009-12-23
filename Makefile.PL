@@ -11,9 +11,10 @@ perl_version_from   'lib/HTML/HTML5/Sanity.pm';
 version_from        'lib/HTML/HTML5/Sanity.pm';
 abstract_from       'lib/HTML/HTML5/Sanity.pm';
 
-test_requires       'Test::More'     => '0.61';
+test_requires       'Test::More'        => '0.61';
 
-requires            'XML::LibXML'    => 0;
+requires            'Locale::Country'   => '1.06';
+requires            'XML::LibXML'       => 0;
 
 auto_set_homepage;
 auto_set_bugtracker;
