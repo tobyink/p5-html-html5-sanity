@@ -4,7 +4,7 @@ use 5.008001;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 require Exporter;
 our @ISA = qw(Exporter);
@@ -798,11 +798,11 @@ __END__
 
 =head1 NAME
 
-HTML::HTML5::Sanity - Perl extension to make HTML5 DOM trees less insane.
+HTML::HTML5::Sanity - Make HTML5 DOM trees less insane.
 
 =head1 VERISON
 
-0.02
+0.03
 
 =head1 SYNOPSIS
 
@@ -887,7 +887,7 @@ Toby Inkster E<lt>tobyink@cpan.orgE<gt>.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2009 by Toby Inkster
+Copyright (C) 2009-2010 by Toby Inkster
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8 or,

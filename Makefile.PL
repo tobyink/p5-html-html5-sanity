@@ -3,13 +3,15 @@ use warnings;
 
 use inc::Module::Install;
 
-license             'perl';
+my $dist = 'HTML-HTML5-Sanity';
+my $fn   = "lib/$dist.pm"; $fn =~ s#-#/#g;
 
-name                'HTML-HTML5-Sanity';
+name                $dist;
+perl_version_from   $fn;
+version_from        $fn;
+abstract_from       $fn;
 author              'Toby Inkster <tobyink@cpan.org>';
-perl_version_from   'lib/HTML/HTML5/Sanity.pm';
-version_from        'lib/HTML/HTML5/Sanity.pm';
-abstract_from       'lib/HTML/HTML5/Sanity.pm';
+license             'perl';
 
 test_requires       'Test::More'        => '0.61';
 
@@ -17,8 +19,14 @@ requires            'HTML::Entities'    => '3.27';
 requires            'Locale::Country'   => '1.06';
 requires            'XML::LibXML'       => 0;
 
-auto_set_homepage;
-auto_set_bugtracker;
+resources(
+	'homepage'   => "http://search.cpan.org/dist/$dist/",
+	'repository' => "http://goddamn.co.uk/viewvc/perlmods/$dist/",
+	'bugtracker' => "http://rt.cpan.org/Dist/Display.html?Queue=$dist",
+	);
+	
+system("rapper -i turtle -o rdfxml-abbrev Changes >Changes.xml")
+	if $Module::Install::AUTHOR;
 
 include 'Test::Signature';
 auto_install;
