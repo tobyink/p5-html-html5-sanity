@@ -25,8 +25,8 @@ resources(
 	'bugtracker' => "http://rt.cpan.org/Dist/Display.html?Queue=$dist",
 	);
 	
-system("rapper -i turtle -o rdfxml-abbrev Changes >Changes.xml")
-	if $Module::Install::AUTHOR;
+write_doap_changes;
+write_doap_changes_xml;
 
 include 'Test::Signature';
 auto_install;

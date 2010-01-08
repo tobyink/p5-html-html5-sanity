@@ -15,8 +15,8 @@
 
 	dc:title         "Changes" ;
 	dc:description   "Revision history for Perl extension HTML::HTML5::Sanity."@en ;
-	dc:subject       :project ;
-	dc:creator       <http://tobyinkster.co.uk/#i> .
+	dc:subject       my:project ;
+	dc:creator       toby:i .
 
 #############################################################
 
@@ -37,7 +37,7 @@ my:v_0.02
 	dcs:changeset
 	[
 		a dcs:ChangeSet ;
-		dcs:versus :v_0.01 ;
+		dcs:versus my:v_0.01 ;
 		dcs:item [ a dcs:Update ;   rdfs:label "Update build system; sign distribution."@en ; rdfs:seeAlso toby:key_pgp_6A2A7D39 ] ;
 		dcs:item [ a dcs:Addition ; rdfs:label "Handling for invalid language attributes."@en ] ;
 		dcs:item [ a dcs:Change ;   rdfs:label "Improve tests."@en ] 
@@ -52,7 +52,7 @@ my:v_0.03
 	dcs:changeset
 	[
 		a dcs:ChangeSet ;
-		dcs:versus :v_0.02 ;
+		dcs:versus my:v_0.02 ;
 		dcs:item [ a dcs:Bugfix ;   rdfs:label "Mention HTML::Entities dependency in Makefile.PL."@en ; dcs:fixes [ rdfs:seeAlso <http://rt.cpan.org/Public/Bug/Display.html?id=53160> ] ] ;
 		dcs:item [ a dcs:Update ;   rdfs:label "Use Turtle for Changes file."@en ; dcs:implements dcs: ; dcs:file <> ] ;
 		dcs:item [ a dcs:Update ;   rdfs:label "Add 2010 copyright notice."@en ]
