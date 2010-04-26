@@ -1,10 +1,10 @@
 package HTML::HTML5::Sanity;
 
-use 5.008001;
+use 5.008;
 use strict;
 use warnings;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 require Exporter;
 our @ISA = qw(Exporter);
@@ -21,6 +21,7 @@ our $FIX_LANG_ATTRIBUTES = 1;
 use HTML::Entities qw(encode_entities_numeric);
 use Locale::Country qw(country_code2code LOCALE_CODE_ALPHA_2 LOCALE_CODE_NUMERIC);
 use XML::LibXML qw(:ns :libxml);
+use XML::LibXML::Debugging '0.04';
 
 our $lang_3to2 = {
 	'aar' => 'aa' ,
@@ -448,178 +449,33 @@ sub fix_attribute
 sub document_to_hashref
 {
 	my $n = shift;
-	
-	return {
-		'type'   => 'Document',
-		'root'   => element_to_hashref($n->documentElement),
-		};
+	return $n->toDebuggingHash;
 }
 
-sub element_to_hashref
-{
-	my $n = shift;
-	
-	my $rv = {
-		'type'    => 'Element',
-		'qname'   => $n->nodeName,
-		'prefix'  => $n->prefix,
-		'suffix'  => $n->localname,
-		'nsuri'   => $n->namespaceURI,
-		'attributes' => [],
-		'children'   => [],
-		};
-	
-	foreach my $attr ($n->attributes)
-	{
-		my $x = attribute_to_hashref($attr);
-		push @{ $rv->{'attributes'} }, $x if $x;
-	}
-	
-	foreach my $kid ($n->childNodes)
-	{
-		if ($kid->nodeType == XML_TEXT_NODE
-		||  $kid->nodeType == XML_CDATA_SECTION_NODE)
-		{
-			push @{ $rv->{'children'} }, $kid->nodeValue;
-		}
-		elsif ($kid->nodeType == XML_COMMENT_NODE)
-		{
-			push @{ $rv->{'children'} }, comment_to_hashref($kid);
-		}
-		elsif ($kid->nodeType == XML_ELEMENT_NODE)
-		{
-			push @{ $rv->{'children'} }, element_to_hashref($kid);
-		}
-	}
-	
-	return $rv;
-}
-
-sub comment_to_hashref
-{
-	my $n = shift;
-	
-	return {
-		'type'    => 'Comment',
-		'comment' => $n->nodeValue,
-		};
-}
-
-sub attribute_to_hashref
-{
-	my $n = shift;
-	
-	if ($n->nodeType == XML_NAMESPACE_DECL)
-	{
-		return {
-			'type'    => 'Attribute (XMLNS)',
-			'qname'   => $n->nodeName,
-			'prefix'  => $n->prefix,
-			'suffix'  => $n->getLocalName,
-			'nsuri'   => $n->getNamespaceURI,
-			'value'   => $n->getData,
-		};
-	}
-	
-	return {
-		'type'    => 'Attribute',
-		'qname'   => $n->nodeName,
-		'prefix'  => $n->prefix,
-		'suffix'  => $n->localname,
-		'nsuri'   => $n->namespaceURI,
-		'value'   => $n->nodeValue,
-		};
-}
+*element_to_hashref   = \&document_to_hashref;
+*comment_to_hashref   = \&document_to_hashref;
+*attribute_to_hashref = \&document_to_hashref;
 
 sub document_to_clarkml
 {
 	my $n = shift;
-	
-	element_to_clarkml($n->documentElement);
+	return $n->toClarkML;
 }
 
-sub element_to_clarkml
-{
-	my $n = shift;
-	
-	my $rv;
-	
-	if (defined $n->namespaceURI)
-	{
-		$rv = sprintf("<{%s}%s", $n->namespaceURI, $n->localname);
-	}
-	else
-	{
-		$rv = sprintf("<%s", $n->localname);
-	}
-	
-	foreach my $attr ($n->attributes)
-	{
-		my $x = attribute_to_clarkml($attr);
-		$rv .= " $x" if $x;
-	}
-	
-	if (! $n->childNodes)
-	{
-		return $rv . "/>";
-	}
-	
-	$rv .= ">";
-	
-	foreach my $kid ($n->childNodes)
-	{
-		if ($kid->nodeType == XML_TEXT_NODE
-		||  $kid->nodeType == XML_CDATA_SECTION_NODE)
-		{
-			$rv .= encode_entities_numeric($kid->nodeValue);
-		}
-		elsif ($kid->nodeType == XML_COMMENT_NODE)
-		{
-			$rv .= "<!--" . $kid->nodeValue . "-->";
-		}
-		elsif ($kid->nodeType == XML_ELEMENT_NODE)
-		{
-			$rv .= element_to_clarkml($kid);
-		}
-	}
-	
-	if (defined $n->namespaceURI)
-	{
-		$rv .= sprintf("</{%s}%s>", $n->namespaceURI, $n->localname);
-	}
-	else
-	{
-		$rv .= sprintf("</%s>", $n->localname);
-	}
-	
-	return $rv;
-}
+*element_to_clarkml   = \&document_to_clarkml;
+*comment_to_clarkml   = \&document_to_clarkml;
+*attribute_to_clarkml = \&document_to_clarkml;
 
-sub attribute_to_clarkml
+sub __stop_warning_me_about_name_being_used_only_once
 {
-	my $n = shift;
-
-	if ($n->nodeType == XML_NAMESPACE_DECL)
-	{
-		if (defined $n->getLocalName)
-		{
-			return sprintf("{%s}%s=\"%s\"",
-				$n->getNamespaceURI, $n->getLocalName, $n->getData);
-		}
-		return sprintf("{%s}XMLNS=\"%s\"",
-			$n->getNamespaceURI, $n->getData);
-	}
-	
-	if (defined $n->namespaceURI)
-	{
-		return sprintf("{%s}%s=\"%s\"",
-			$n->namespaceURI, $n->localname, $n->nodeValue);
-	}
-	else
-	{
-		return sprintf("%s=\"%s\"",
-			$n->localname, $n->nodeValue);
-	}
+	eval {
+		&element_to_hashref;
+		&comment_to_hashref;
+		&attribute_to_hashref;
+		&element_to_clarkml;
+		&comment_to_clarkml;
+		&attribute_to_clarkml;
+	};
 }
 
 sub _valid_lang
@@ -798,7 +654,7 @@ __END__
 
 =head1 NAME
 
-HTML::HTML5::Sanity - Make HTML5 DOM trees less insane.
+HTML::HTML5::Sanity - make HTML5 DOM trees less insane.
 
 =head1 VERISON
 
@@ -813,7 +669,7 @@ HTML::HTML5::Sanity - Make HTML5 DOM trees less insane.
   my $html5_dom = $parser->parse_file('http://example.com/');
   my $sane_dom  = fix_document($html5_dom);
   
-  print document_to_clarkml($sane_dom);
+  print $sane_dom->toClarkML;
 
 =head1 DESCRIPTION
 
@@ -830,7 +686,7 @@ Looks like it should be parsed so that it has an attribute "lang" in
 the XML namespace. Not so. It will really be parsed as having the
 attribute "xml:lang" in the null namespace.
 
-=over 8
+=over 4
 
 =item C<fix_document>
 
@@ -838,6 +694,26 @@ attribute "xml:lang" in the null namespace.
 
 Returns a modified copy of the DOM and leaving the original DOM
 unmodified.
+
+=item C<$HTML::HTML5::Sanity::FIX_LANG_ATTRIBUTES>
+
+  $HTML::HTML5::Sanity::FIX_LANG_ATTRIBUTES = 2;
+  $sane_dom = fix_document($html5_dom);
+
+If set to 1 (the default), the package will detect invalid values in
+@lang and @xml:lang, and remove the attribute if it is invalid. If set
+to 2, it will also attempt to canonicalise the value (e.g. 'EN_GB' will
+be converted to to 'en-GB'). If set to 0, then the value of language
+attributes is not checked.
+
+=back
+
+=head2 Deprecated Functions
+
+The following are deprecated and will be removed in a later version of
+HTML::HTML5::Sanity. Use XML::LibXML::Debugging instead.
+
+=over 4
 
 =item C<document_to_clarkml>, C<element_to_clarkml>, C<attribute_to_clarkml>, 
 
@@ -859,17 +735,6 @@ export the others too.
 Returns a hashref useful for debugging. Only the first function, which
 takes an XML::LibXML::Document is exported by default, but by choosing
 an export list of ":all" or ":debug" will export the others too.
-
-=item C<$HTML::HTML5::Sanity::FIX_LANG_ATTRIBUTES>
-
-  $HTML::HTML5::Sanity::FIX_LANG_ATTRIBUTES = 2;
-  $sane_dom = fix_document($html5_dom);
-
-If set to 1 (the default), the package will detect invalid values in
-@lang and @xml:lang, and remove the attribute if it is invalid. If set
-to 2, it will also attempt to canonicalise the value (e.g. 'EN_GB' will
-be converted to to 'en-GB'). If set to 0, then the value of language
-attributes is not checked.
 
 =back
 

@@ -1,5 +1,5 @@
 ---
-abstract: 'Make HTML5 DOM trees less insane.'
+abstract: 'make HTML5 DOM trees less insane.'
 author:
   - 'Toby Inkster <tobyink@cpan.org>'
 build_requires:
@@ -28,4 +28,4 @@ resources:
   homepage: http://search.cpan.org/dist/HTML-HTML5-Sanity/
   license: http://dev.perl.org/licenses/
   repository: http://goddamn.co.uk/viewvc/perlmods/HTML-HTML5-Sanity/
-version: 0.03
+version: 0.04

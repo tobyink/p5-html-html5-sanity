@@ -4,7 +4,7 @@
 @prefix dcs:     <http://ontologi.es/doap-changeset#> .
 @prefix dc:      <http://purl.org/dc/terms/> .
 @prefix foaf:    <http://xmlns.com/foaf/0.1/> .
-@prefix my:      <http://search.cpan.org/dist/HTML-HTML5-Sanity/#> .
+@prefix my:      <http://purl.org/NET/cpan-uri/dist/HTML-HTML5-Sanity/> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix toby:    <http://tobyinkster.co.uk/#> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
@@ -20,7 +20,7 @@
 
 #############################################################
 
-my:v_0.01
+my:v_0-01
 
 	a               :Version ;
 	dc:issued       "2009-12-03"^^xsd:date ;
@@ -28,7 +28,7 @@ my:v_0.01
 	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/HTML-HTML5-Sanity-0.01.tar.gz> ;
 	rdfs:comment    "Original version"@en .
 
-my:v_0.02
+my:v_0-02
 
 	a               :Version ;
 	dc:issued       "2009-12-23"^^xsd:date ;
@@ -37,13 +37,13 @@ my:v_0.02
 	dcs:changeset
 	[
 		a dcs:ChangeSet ;
-		dcs:versus my:v_0.01 ;
+		dcs:versus my:v_0-01 ;
 		dcs:item [ a dcs:Update ;   rdfs:label "Update build system; sign distribution."@en ; rdfs:seeAlso toby:key_pgp_6A2A7D39 ] ;
 		dcs:item [ a dcs:Addition ; rdfs:label "Handling for invalid language attributes."@en ] ;
 		dcs:item [ a dcs:Change ;   rdfs:label "Improve tests."@en ] 
 	] .
 
-my:v_0.03
+my:v_0-03
 
 	a               :Version ;
 	dc:issued       "2010-01-08"^^xsd:date ;
@@ -52,10 +52,23 @@ my:v_0.03
 	dcs:changeset
 	[
 		a dcs:ChangeSet ;
-		dcs:versus my:v_0.02 ;
+		dcs:versus my:v_0-02 ;
 		dcs:item [ a dcs:Bugfix ;   rdfs:label "Mention HTML::Entities dependency in Makefile.PL."@en ; dcs:fixes [ rdfs:seeAlso <http://rt.cpan.org/Public/Bug/Display.html?id=53160> ] ] ;
 		dcs:item [ a dcs:Update ;   rdfs:label "Use Turtle for Changes file."@en ; dcs:implements dcs: ; dcs:file <> ] ;
 		dcs:item [ a dcs:Update ;   rdfs:label "Add 2010 copyright notice."@en ]
+	] .
+
+my:v_0-04
+
+	a               :Version ;
+	dc:issued       "2010-04-28"^^xsd:date ;
+	:revision       "0.04"^^xsd:string ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/HTML-HTML5-Sanity-0.04.tar.gz> ;
+	dcs:changeset
+	[
+		a dcs:ChangeSet ;
+		dcs:versus my:v_0-03 ;
+		dcs:item [ rdfs:label "Split out XML-LibXML-Debugging."@en ]
 	] .
 
 #############################################################
@@ -64,7 +77,7 @@ my:project
 
 	a               :Project ;
 	:name           "HTML-HTML5-Sanity" ;
-	:shortdesc      "Make HTML5 DOM trees less insane"@en ;
+	:shortdesc      "make HTML5 DOM trees less insane"@en ;
 	:programming-language  "Perl" ;
 	:homepage       <http://search.cpan.org/dist/HTML-HTML5-Sanity/> ;
 	:download-page  <http://search.cpan.org/dist/HTML-HTML5-Sanity/> ;
@@ -76,7 +89,7 @@ my:project
 	:tester         toby:i ;
 	:created        "2009-11-30"^^xsd:date ;
 	:license        <http://dev.perl.org/licenses/> ;
-	:release        my:v_0.01 , my:v_0.02 , my:v_0.03 .
+	:release        my:v_0-01 , my:v_0-02 , my:v_0-03 , my:v_0-04 .
 
 #############################################################
 
@@ -85,6 +98,8 @@ toby:i
 	a               foaf:Person ;
 	foaf:name       "Toby Inkster" ;
 	foaf:homepage   <http://tobyinkster.co.uk/> ;
-	foaf:page       <http://search.cpan.org/~tobyink/> .
+	foaf:page       <http://search.cpan.org/~tobyink/> ;
+	foaf:mbox       <mailto:tobyink@cpan.org> ;
+	<http://www.w3.org/2002/07/owl#sameAs> <http://purl.org/NET/cpan-uri/person/tobyink> .
 
 #############################################################
