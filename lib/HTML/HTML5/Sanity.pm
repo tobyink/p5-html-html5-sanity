@@ -744,7 +744,7 @@ Please report any bugs to L<http://rt.cpan.org/>.
 
 =head1 SEE ALSO
 
-L<HTML::HTML5::Parser>, L<XML::LibXML>.
+L<HTML::HTML5::Parser>, L<XML::LibXML>, L<XML::LibXML::Debugging>.
 
 =head1 AUTHOR
 

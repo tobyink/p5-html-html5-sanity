@@ -14,14 +14,14 @@ Maintainer:   Toby Inkster <mailto:tobyink@cpan.org>
  - Split out XML-LibXML-Debugging.
 
 0.03 [2010-01-08]
- - (Update) Add 2010 copyright notice.
- - (Bugfix) Mention HTML::Entities dependency in Makefile.PL.
  - (Update) Use Turtle for Changes file.
+ - (Bugfix) Mention HTML::Entities dependency in Makefile.PL.
+ - (Update) Add 2010 copyright notice.
 
 0.02 [2009-12-23]
+ - (Update) Update build system; sign distribution.
  - Improve tests.
  - (Addition) Handling for invalid language attributes.
- - (Update) Update build system; sign distribution.
 
 0.01 [2009-12-03]
 
