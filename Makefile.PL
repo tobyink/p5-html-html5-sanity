@@ -14,12 +14,11 @@ readme_from         $fn;
 author              'Toby Inkster <tobyink@cpan.org>';
 license             'perl';
 
-test_requires       'Test::More'        => '0.61';
-
 requires            'HTML::Entities'    => '3.27';
 requires            'Locale::Country'   => '1.06';
+test_requires       'Test::More'        => '0.61';
 requires            'XML::LibXML'       => 0;
-requires            'XML::LibXML::Debugging' => 0;
+test_requires       'XML::LibXML::Debugging' => 0;
 
 resources(
 	'homepage'   => "http://search.cpan.org/dist/$dist/",

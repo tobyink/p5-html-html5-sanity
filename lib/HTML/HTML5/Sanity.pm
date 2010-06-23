@@ -4,14 +4,13 @@ use 5.008;
 use strict;
 use warnings;
 
-our $VERSION = '0.04';
+our $VERSION = '0.100';
 
 require Exporter;
 our @ISA = qw(Exporter);
 our %EXPORT_TAGS = (
-	'all'       => [ qw(fix_document document_to_hashref document_to_clarkml element_to_hashref element_to_clarkml attribute_to_hashref attribute_to_clarkml) ],
-	'debug'     => [ qw(document_to_hashref document_to_clarkml element_to_hashref element_to_clarkml attribute_to_hashref attribute_to_clarkml) ],
-	'standard'  => [ qw(fix_document document_to_hashref document_to_clarkml) ],
+	'all'       => [ qw(fix_document fix_element fix_attribute) ],
+	'standard'  => [ qw(fix_document) ],
 	);
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT    = ( @{ $EXPORT_TAGS{'standard'} } );
@@ -21,7 +20,6 @@ our $FIX_LANG_ATTRIBUTES = 1;
 use HTML::Entities qw(encode_entities_numeric);
 use Locale::Country qw(country_code2code LOCALE_CODE_ALPHA_2 LOCALE_CODE_NUMERIC);
 use XML::LibXML qw(:ns :libxml);
-use XML::LibXML::Debugging '0.04';
 
 our $lang_3to2 = {
 	'aar' => 'aa' ,
@@ -446,38 +444,6 @@ sub fix_attribute
 	return undef;
 }
 
-sub document_to_hashref
-{
-	my $n = shift;
-	return $n->toDebuggingHash;
-}
-
-*element_to_hashref   = \&document_to_hashref;
-*comment_to_hashref   = \&document_to_hashref;
-*attribute_to_hashref = \&document_to_hashref;
-
-sub document_to_clarkml
-{
-	my $n = shift;
-	return $n->toClarkML;
-}
-
-*element_to_clarkml   = \&document_to_clarkml;
-*comment_to_clarkml   = \&document_to_clarkml;
-*attribute_to_clarkml = \&document_to_clarkml;
-
-sub __stop_warning_me_about_name_being_used_only_once
-{
-	eval {
-		&element_to_hashref;
-		&comment_to_hashref;
-		&attribute_to_hashref;
-		&element_to_clarkml;
-		&comment_to_clarkml;
-		&attribute_to_clarkml;
-	};
-}
-
 sub _valid_lang
 {
 	my $value_to_test = shift;
@@ -654,11 +620,11 @@ __END__
 
 =head1 NAME
 
-HTML::HTML5::Sanity - make HTML5 DOM trees less insane.
+HTML::HTML5::Sanity - make HTML5 DOM trees less insane
 
 =head1 VERISON
 
-0.03
+0.100
 
 =head1 SYNOPSIS
 
@@ -668,8 +634,6 @@ HTML::HTML5::Sanity - make HTML5 DOM trees less insane.
   my $parser    = HTML::HTML5::Parser->new;
   my $html5_dom = $parser->parse_file('http://example.com/');
   my $sane_dom  = fix_document($html5_dom);
-  
-  print $sane_dom->toClarkML;
 
 =head1 DESCRIPTION
 
@@ -705,36 +669,6 @@ If set to 1 (the default), the package will detect invalid values in
 to 2, it will also attempt to canonicalise the value (e.g. 'EN_GB' will
 be converted to to 'en-GB'). If set to 0, then the value of language
 attributes is not checked.
-
-=back
-
-=head2 Deprecated Functions
-
-The following are deprecated and will be removed in a later version of
-HTML::HTML5::Sanity. Use XML::LibXML::Debugging instead.
-
-=over 4
-
-=item C<document_to_clarkml>, C<element_to_clarkml>, C<attribute_to_clarkml>, 
-
-  $string = document_to_clarkml($document);
-  $string = element_to_clarkml($element);
-  $string = attribute_to_clarkml($attribute);
-
-Returns a Clark-Notation-like string useful for debugging. Only the 
-first function, which takes an XML::LibXML::Document is exported by
-default, but by choosing an export list of ":all" or ":debug" will
-export the others too.
-
-=item C<document_to_hashref>, C<element_to_hashref>, C<attribute_to_hashref>, 
-
-  $data = document_to_hashref($document);
-  $data = element_to_hashref($element);
-  $data = attribute_to_hashref($attribute);
-
-Returns a hashref useful for debugging. Only the first function, which
-takes an XML::LibXML::Document is exported by default, but by choosing
-an export list of ":all" or ":debug" will export the others too.
 
 =back
 

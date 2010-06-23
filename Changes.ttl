@@ -71,6 +71,19 @@ my:v_0-04
 		dcs:item [ rdfs:label "Split out XML-LibXML-Debugging."@en ]
 	] .
 
+my:v_0-100
+
+	a               :Version ;
+	dc:issued       "2010-06-23"^^xsd:date ;
+	:revision       "0.100"^^xsd:string ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/HTML-HTML5-Sanity-0.100.tar.gz> ;
+	dcs:changeset
+	[
+		a dcs:ChangeSet ;
+		dcs:versus my:v_0-04 ;
+		dcs:item [ rdfs:label "Remove deprecated debugging functions."@en ; a dcs:Removal ]
+	] .
+
 #############################################################
 
 my:project
@@ -89,7 +102,8 @@ my:project
 	:tester         toby:i ;
 	:created        "2009-11-30"^^xsd:date ;
 	:license        <http://dev.perl.org/licenses/> ;
-	:release        my:v_0-01 , my:v_0-02 , my:v_0-03 , my:v_0-04 .
+	:release        my:v_0-01 , my:v_0-02 , my:v_0-03 , my:v_0-04 ,
+	                my:v_0-100 .
 
 #############################################################
 
