@@ -14,10 +14,10 @@ readme_from         $fn;
 author              'Toby Inkster <tobyink@cpan.org>';
 license             'perl';
 
-requires            'HTML::Entities'    => '3.27';
-requires            'Locale::Country'   => '1.06';
-test_requires       'Test::More'        => '0.61';
-requires            'XML::LibXML'       => 0;
+requires            'Locale::Country'        => '1.06';
+test_requires       'Module::Signature'      => '0.66';
+test_requires       'Test::More'             => '0.61';
+requires            'XML::LibXML'            => '1.60';
 test_requires       'XML::LibXML::Debugging' => 0;
 
 resources(
@@ -25,6 +25,8 @@ resources(
 	'repository' => "http://goddamn.co.uk/viewvc/perlmods/$dist/",
 	'bugtracker' => "http://rt.cpan.org/Dist/Display.html?Queue=$dist",
 	);
+	
+keywords qw(HTML HTML5 Markup Fixer Fix Attributes Namespaces XML DOM Lang Language);
 	
 write_doap_changes;
 write_doap_changes_xml;

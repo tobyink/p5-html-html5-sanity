@@ -4,12 +4,12 @@ use 5.008;
 use strict;
 use warnings;
 
-our $VERSION = '0.100';
+our $VERSION = '0.101';
 
 require Exporter;
 our @ISA = qw(Exporter);
 our %EXPORT_TAGS = (
-	'all'       => [ qw(fix_document fix_element fix_attribute) ],
+	'all'       => [ qw(fix_document) ],
 	'standard'  => [ qw(fix_document) ],
 	);
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
@@ -17,7 +17,6 @@ our @EXPORT    = ( @{ $EXPORT_TAGS{'standard'} } );
 
 our $FIX_LANG_ATTRIBUTES = 1;
 
-use HTML::Entities qw(encode_entities_numeric);
 use Locale::Country qw(country_code2code LOCALE_CODE_ALPHA_2 LOCALE_CODE_NUMERIC);
 use XML::LibXML qw(:ns :libxml);
 
@@ -622,10 +621,6 @@ __END__
 
 HTML::HTML5::Sanity - make HTML5 DOM trees less insane
 
-=head1 VERISON
-
-0.100
-
 =head1 SYNOPSIS
 
   use HTML::HTML5::Parser;
@@ -686,11 +681,9 @@ Toby Inkster E<lt>tobyink@cpan.orgE<gt>.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2009-2010 by Toby Inkster
+Copyright (C) 2009-2011 by Toby Inkster
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.8 or,
-at your option, any later version of Perl 5 you may have available.
-
+it under the same terms as Perl itself.
 
 =cut
