@@ -29,8 +29,9 @@ keywords qw(HTML HTML5 Markup Fixer Fix Attributes Namespaces XML DOM Lang Langu
 	
 write_doap_changes;
 write_doap_changes_xml;
+auto_license;
+auto_manifest;
 
-include 'Test::Signature';
 auto_install;
 WriteAll(
 	'meta' => 1,

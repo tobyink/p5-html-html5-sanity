@@ -1,3 +1,5 @@
+^MANIFEST.bak$
+^Makefile.old$
 ^HTML-HTML5-Sanity-.\...\.tar\.gz$
 ^Makefile$
 ^blib/
