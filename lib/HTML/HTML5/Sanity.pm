@@ -1,10 +1,10 @@
 package HTML::HTML5::Sanity;
 
-use 5.008;
+use 5.010;
 use strict;
 use warnings;
 
-our $VERSION = '0.101';
+our $VERSION = '0.102';
 
 require Exporter;
 our @ISA = qw(Exporter);
@@ -647,12 +647,20 @@ attribute "xml:lang" in the null namespace.
 
 =over 4
 
-=item C<fix_document>
+=item C<< fix_document($document) >>
 
   $sane_dom = fix_document($html5_dom);
 
 Returns a modified copy of the DOM and leaving the original DOM
 unmodified.
+
+=item C<< fix_element($element_node, $new_document_node, \%namespaces) >>
+
+Don't use this. Not exported.
+
+=item C<< fix_attribute($attribute_node, $new_element_node, \%namespaces) >>
+
+Don't use this. Not exported.
 
 =item C<$HTML::HTML5::Sanity::FIX_LANG_ATTRIBUTES>
 
@@ -673,7 +681,7 @@ Please report any bugs to L<http://rt.cpan.org/>.
 
 =head1 SEE ALSO
 
-L<HTML::HTML5::Parser>, L<XML::LibXML>, L<XML::LibXML::Debugging>.
+L<HTML::HTML5::Parser>, L<XML::LibXML>, L<Task::HTML5>.
 
 =head1 AUTHOR
 
