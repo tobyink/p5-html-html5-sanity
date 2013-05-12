@@ -3,8 +3,12 @@ package HTML::HTML5::Sanity;
 use 5.010;
 use strict;
 use warnings;
+use Object::AUTHORITY;
 
-our $VERSION = '0.102';
+BEGIN {
+	$HTML::HTML5::Sanity::AUTHORITY = 'cpan:TOBYINK';
+	$HTML::HTML5::Sanity::VERSION   = '0.103';
+}
 
 require Exporter;
 our @ISA = qw(Exporter);

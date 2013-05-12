@@ -17,6 +17,6 @@ ok(
 	);
 
 is(
-	$fixed->toClarkML,
-	'<{http://www.w3.org/1999/xhtml}html {http://www.w3.org/XML/1998/namespace}lang="en-gb-oed" {http://www.w3.org/2000/xmlns/}XMLNS="http://www.w3.org/1999/xhtml"/>',
+	lc $fixed->toClarkML,
+	lc '<{http://www.w3.org/1999/xhtml}html {http://www.w3.org/XML/1998/namespace}lang="en-gb-oed" {http://www.w3.org/2000/xmlns/}XMLNS="http://www.w3.org/1999/xhtml"/>',
 	"Things seem to be working.");

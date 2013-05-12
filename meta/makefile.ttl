@@ -3,12 +3,12 @@
 @prefix : <http://purl.org/NET/cpan-uri/terms#> .
 
 <http://purl.org/NET/cpan-uri/dist/HTML-HTML5-Sanity/project>
-	:perl_version_from _:main ;
-	:version_from _:main ;
-	:readme_from _:main ;
-	:recommends "HTML::HTML5::Parser 0.107" ;
-	:test_requires "Test::More 0.61" , "XML::LibXML::Debugging" ;
-	:requires "XML::LibXML 1.70", "Locale::Country" .
+	:perl_version_from _:main;
+	:version_from _:main;
+	:readme_from _:main;
+	:recommends "HTML::HTML5::Parser 0.107";
+	:test_requires "Test::More 0.61" , "XML::LibXML::Debugging";
+	:requires "XML::LibXML 1.70", "Locale::Country", "Object::AUTHORITY".
 
 _:main <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#fileName> "lib/HTML/HTML5/Sanity.pm" .
 

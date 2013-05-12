@@ -98,3 +98,17 @@ my:v_0-102
 		dcs:item [ rdfs:label "use 5.010."@en ; a dcs:Update ] ;
 		dcs:item [ rdfs:label "Module::Package::RDF."@en ; a dcs:Packaging ]
 	] .
+
+my:project :release my:v_0-103 .
+my:v_0-103
+	a               :Version ;
+	dc:issued       "2011-12-08"^^xsd:date ;
+	:revision       "0.103"^^xsd:string ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/HTML-HTML5-Sanity-0.103.tar.gz> ;
+	dcs:changeset
+	[
+		a dcs:ChangeSet ;
+		dcs:versus my:v_0-102 ;
+		dcs:item [ rdfs:label "use Object::AUTHORITY"@en ; a dcs:Update ];
+		dcs:item [ rdfs:label "Update test cases to cope with changes to XML::LibXML::Debugging."@en ; a dcs:Packaging ]
+	] .
