@@ -6,7 +6,7 @@ use warnings;
 
 BEGIN {
 	$HTML::HTML5::Sanity::AUTHORITY = 'cpan:TOBYINK';
-	$HTML::HTML5::Sanity::VERSION   = '0.104';
+	$HTML::HTML5::Sanity::VERSION   = '0.105';
 }
 
 require Exporter;

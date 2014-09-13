@@ -126,3 +126,10 @@ my:v_0-104
 		dcs:item [ rdfs:label "Object::AUTHORITY"@en ; a dcs:Removal ];
 		dcs:item [ rdfs:label "Newer version of build system; avoid bundling ancient Scalar::Util."@en ; a dcs:Packaging ]
 	] .
+
+`HTML-HTML5-Sanity 0.105 cpan:TOBYINK`
+	issued    2014-09-13;
+	changeset [
+		item "Switch to Dist::Inkt."^^Packaging;
+	].
+
