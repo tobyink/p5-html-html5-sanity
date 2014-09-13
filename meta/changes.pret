@@ -131,5 +131,7 @@ my:v_0-104
 	issued    2014-09-13;
 	changeset [
 		item "Switch to Dist::Inkt."^^Packaging;
+		item "Fix dependency metadata (still included Object::AUTHORITY)."^^Packaging;
+		item "Minor tidying."^^Change;
 	].
 
