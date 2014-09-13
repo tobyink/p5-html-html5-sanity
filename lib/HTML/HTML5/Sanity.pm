@@ -1,8 +1,8 @@
-package HTML::HTML5::Sanity;
-
 use 5.010;
 use strict;
 use warnings;
+
+package HTML::HTML5::Sanity;
 
 BEGIN {
 	$HTML::HTML5::Sanity::AUTHORITY = 'cpan:TOBYINK';
@@ -14,7 +14,7 @@ our @ISA = qw(Exporter);
 our %EXPORT_TAGS = (
 	'all'       => [ qw(fix_document) ],
 	'standard'  => [ qw(fix_document) ],
-	);
+);
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT    = ( @{ $EXPORT_TAGS{'standard'} } );
 
@@ -692,7 +692,7 @@ Toby Inkster E<lt>tobyink@cpan.orgE<gt>.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2009-2013 by Toby Inkster
+Copyright (C) 2009-2014 by Toby Inkster
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
